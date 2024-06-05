@@ -1,0 +1,409 @@
+/* 전체 페이지 기본 스타일 */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 헤더 영역 */
+.top-bar {
+    background-color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px 8px 0 0;
+    border-bottom: 0.8px solid #ccc;
+}
+
+.top-bar .logo {
+    height: 50px;
+}
+
+.user-controls a {
+    color: #3949AB;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #3949AB;
+}
+
+/* 채팅룸 및 사이드바 */
+#chatroom {
+    display: flex;
+    margin: 5 auto;
+    flex: 1;
+    overflow: hidden;
+}
+
+#sidebar {
+    width: 250px; /* 고정된 사이드바 너비 */
+    min-width: 200px; /* 최소 너비 설정 */
+    max-width: 250px; /* 최대 너비 설정 */
+    background-color: #EBECF0;
+    padding: 10px;
+    flex-shrink: 0; /* 사이드바의 크기 조절을 비활성화 */
+}
+
+#days {
+    margin-top: 80px;
+    margin-left: 5px;
+}
+
+#rooms li{
+    display: block;
+    background-color: white; /* 버튼의 배경색을 어두운 파란색으로 설정 */
+    border: none;
+    width: 105%;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: -40px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-weight: bold; /* 텍스트를 굵게 설정 */
+    padding: 10px 15px; /* 버튼 내부의 패딩을 조정 */
+}
+
+#createNewRoom {
+    display: block;
+    background-color: #173F99; /* 버튼의 배경색을 어두운 파란색으로 설정 */
+    color: #ffffff; /* 텍스트 색상을 흰색으로 설정 */
+    border: none;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    margin: 5px 0;
+    cursor: pointer;
+    font-weight: bold; /* 텍스트를 굵게 설정 */
+    padding: 10px 15px; /* 버튼 내부의 패딩을 조정 */
+}
+
+#rooms li:hover, #sidebar button:hover {
+    background-color: #d1d1d1; /* 호버 시 배경색 변경 */
+}
+
+#createNewRoom:hover {
+    background-color: #0d2457; /* 'Create New Room' 버튼의 호버 색상을 더 어두운 파란색으로 설정 */
+}
+
+
+/* 메인 채팅 영역 */
+#chat-area {
+    flex-grow: 1;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden; /* 가로 스크롤을 숨김 */
+    background-color: #fff;
+    border-left: 1px solid #ccc;
+}
+
+#messages {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 20px;
+    padding-right: 40px; /* 추가된 우측 패딩 */
+    width: 100%;
+    max-height: 80vh; /* 최대 높이를 화면의 80%로 설정 */
+}
+
+.message {
+    background-color: #e5e5ea;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    max-width: 70%;
+    width: 100%;
+    display: flex;
+    word-wrap: break-word;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 100px; /* 우측에서 20px 떨어짐 */
+    padding-left: 200px; /*우측에서 20px 떨어짐 */
+}
+
+.input-area {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 270px; /* 사이드바 너비만큼 왼쪽 여백 설정 */
+    right: 0; /* 오른쪽 끝까지 확장 */
+    display: flex;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    border-top: 1px solid #ccc;
+    z-index: 999; /* 다른 요소 위에 위치하도록 z-index 설정 */
+}
+
+/* .input-area를 숨기고 .chatroom을 flex로 표시 */
+#chatroom.active .input-area {
+    display: flex;
+}
+
+.input-area input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+.input-area button {
+    flex: none; /* 너비 고정을 위해 flex-grow 사용 중지 */
+    width: 100px; /* 버튼의 너비 고정 */
+    background-color: #3949AB;
+    color: white;
+    border: none;
+    margin-left: 8px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+
+/*메세지버블*/
+.message-container {
+    display: flex;
+    flex-direction: column;
+    /*align-items: flex-start;*/
+    margin-top: 10px;
+    position: relative; /* 부모 요소로부터의 상대적인 위치 설정 */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-right: 10px; /* 메시지와 프로필 사이 간격 */
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 5px; /* 사진과 이름 사이의 간격 */
+}
+
+.username {
+    font-weight: bold;
+    color: black; 
+}
+/* 사용자 채팅 메시지 */
+.user-message {
+    background-color: #E9F0FF;
+    border-radius: 21px 0 21px 21px;
+    min-width: 10px;
+    max-width: 25%;
+    margin-top: 10px;
+    margin-right: 50px;
+    text-align: left;
+    align-self: flex-end;
+    padding-left: 15px;
+    padding-right: 12px;
+    position: relative; /* 상대적 위치 설정 */
+}
+
+
+/* 셜록 홈즈의 채팅 메시지 */
+/* 셜록 홈즈의 채팅 메시지 */
+.sherlock-message {
+    background-color: #173F99;
+    color: white;
+    border-radius: 21px 21px 21px 0;
+    min-width: 10px;
+    max-width: 55%;
+    margin-top: 10px;
+    text-align: left;
+    align-self: flex-start;
+    padding-left: 15px;
+    padding-right: 8px;
+    position: relative; /* 상대적 위치 설정 */
+    overflow: visible; /* 버튼이 상자 밖으로 나가도록 함 */
+}
+
+/*모달(팝업)창*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 60%; /* 모달 창의 너비 조정 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    left: 130px; /* 모달 창을 오른쪽으로 20px 이동 */
+}
+
+.profile-section {
+    display: flex;
+    align-items: flex-start; /* 세부 내용이 많을 경우 상단 정렬 */
+    align-items: center;
+}   
+
+.profile-pic-big {
+    width: 210px; /* 프로필 사진 크기 */
+    height: 300px;
+    border-radius: 10%;
+    margin-right: 20px; /* 사진과 설명 사이의 간격 */
+    
+}
+
+.profile-details {
+    flex-grow: 1; /* 세부 설명이 남은 공간을 모두 채우도록 함 */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+    text-decoration: none;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.modal-header, .modal-body, .modal-footer {
+    padding: 10px;
+}
+
+/* 타임스탬프 */
+.timestamp {
+    font-size: 0.8em;
+    color: #888;
+    position: absolute; /* 절대 위치 설정 */
+    bottom: -20px; /* 아래로 이동 */
+    left: 15px;
+}
+
+/* 셜록 메시지 버튼 스타일 */
+.sherlock-message-button {
+    background-color: transparent; /* 배경색을 투명으로 설정 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 30px; /* 타임스탬프와의 간격 */
+    font-size: 0.8em;
+    position: absolute; /* 절대적 위치 설정 */
+    bottom: -25px; /* 답변 상자의 바닥으로부터의 거리 조정 */
+    right: -35px; /* 답변 상자의 우측으로부터의 거리 조정 */
+}
+
+.sherlock-message-button:hover {
+    background-color: transparent; /* 배경색을 투명으로 설정 */
+}
+
+/* 첫 메인 화면 */
+#main-screen {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll; /* 스크롤을 위한 설정 */
+}
+
+/* 메인 페이지 섹션 스타일 */
+.page {
+    height: 100vh; /* 화면 전체 높이를 차지하도록 수정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    text-align: center;
+    padding: 0; /* padding 제거 */
+}
+
+#page1 {
+    background-color: #E8F0FE;
+    min-height: 100vh; /* 화면 세로를 꽉 채우기 위해 최소 높이를 화면 높이로 설정 */
+    min-height: 100vh; /* 화면 세로를 꽉 채우기 위해 최소 높이를 화면 높이로 설정 */
+    width: 100%; /* 화면 너비를 꽉 채우기 위해 너비를 100%로 설정 */
+}
+
+#page2 {
+    background-color: #f3f3f3;
+    min-height: 100vh; /* 화면 세로를 꽉 채우기 위해 최소 높이를 화면 높이로 설정 */
+    width: 100%; /* 화면 너비를 꽉 채우기 위해 너비를 100%로 설정 */
+}
+
+#page3 {
+    background-color: white;
+    min-height: 100vh; /* 화면 세로를 꽉 채우기 위해 최소 높이를 화면 높이로 설정 */
+    width: 100%; /* 화면 너비를 꽉 채우기 위해 너비를 100%로 설정 */
+}
+
+#page4 {
+    background-color: #f3f3f3;
+    min-height: 100vh; /* 화면 세로를 꽉 채우기 위해 최소 높이를 화면 높이로 설정 */
+    width: 100%; /* 화면 너비를 꽉 채우기 위해 너비를 100%로 설정 */
+}
+
+#page5 {
+    background-color: #0C2359;
+    min-height: 20vh;
+    display: flex; /* 요소를 가로로 배열 */
+    justify-content: flex-start; /* 가로 정렬 방향을 시작점으로 설정 */
+    align-items: flex-start; /* 세로 정렬 방향을 시작점으로 설정 */
+    padding: 20px; /* 텍스트와 페이지 가장자리 간격을 늘림 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+}
+.page h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.page p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* 메인 페이지의 버튼 스타일 */
+#page1 button {
+    background-color: #3949AB;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#page1 button:hover {
+    background-color: #173F99;
+}

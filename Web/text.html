@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>En'talk - Chat with Sherlock Holmes</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="top-bar">
+        <img src="../images/img_title.png" alt="Chat App Logo" class="logo">
+        <div class="user-controls">
+            <a href="/login">Login</a>
+            <a href="/profile">Profile</a>
+        </div>
+    </header>
+
+    <!-- 첫 메인 화면 -->
+    <div id="main-screen">
+        <section class="page" id="page1">
+            <h1 style="font-size: 2.3em; margin-top: 90px;">En’talk에서의 특별한 순간,</h1>
+            <h1 style="font-size: 2.3em; margin-top: 0;">내가 선정한 캐릭터와의 친밀한 대화</h1>
+            <p style="font-weight: 300; margin-top: 2px; font-size: 1.1em;">나만의 최애 캐릭터와 대화할 수 있는 보이스 생성형 AI 웹사이트</p>
+            <!-- 두 버튼을 나란히 배치 -->
+            <div style="display: flex;">
+                <button onclick="window.location.href='#page2'" style="position: relative; background-color: #173F99; border: 2px solid #173F99; border-radius: 20px; color: white; font-weight: bold; display: flex; justify-content: center; align-items: center; padding: 5px 15px;">
+                    <img src="../images/img_star1.png" alt="Star" style="width: 40px; height: 30px; margin-right: 7px;">
+                    좀 더 알아보기
+                </button>  
+                <button onclick="startChat()" style="margin-left: 20px; position: relative; background-color: white; border: 2px solid #173F99; border-radius: 20px; color: black; font-weight: bold; display: flex; justify-content: center; align-items: center; padding: 5px 11px;">
+                    <img src="../images/img_star2.png" alt="Star" style="width: 40px; height: 30px; margin-right: 7px;">
+                    무료로 대화하기
+                </button>             
+            </div>
+            <!-- 여기 이미지 안 깨지는 걸로 바꿔줘~~! -->
+            <img src="../images/img_page1.png" alt="Sound" style="width: 60%; height: 100vh; margin-top: 70px; margin-bottom: 0; background-color: transparent; border: none; border-radius: 15px;">
+        </section>
+
+        <section class="page" id="page2">
+            <h1 style="font-size: 2.2em; margin-top: 0px;">En’talk은 <span style="color: #173F99;">극중 연예인</span>과 대화할 수 있는</h1>
+            <h1 style="font-size: 2.2em; margin-top: 0;">보이스 <span style="color: #173F99;">생성형 AI</span> Web 서비스입니다.</h1>
+            <p style="font-weight: 300; margin-top: 2px; font-size: 1.1em;">최애 캐릭터의 목소리를 실시간으로 들으면서 채팅할 수 있는 특별한 기능</p>
+            <!-- 위에 2개의 직사각형 -->
+            <div style="display: flex; justify-content: center; margin-top: 50px; border-radius: 15px;">
+                <div style="background-color: white; width: 350px; height: 80px; margin-right: 40px; border-radius: 15px; position: relative;">
+                    <!-- 작은 직사각형 -->
+                    <div style="background-color: #E9F0FF; width: 80px; height: 60px; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); border-radius: 10px;"></div>
+                    <!-- 이미지 -->
+                    <img src="../images/img_page2(1).png" alt="Star" style="width: 35px; height: 35px; position: absolute; left: 32px; top: 50%; transform: translateY(-50%);">
+                    <!-- 텍스트 -->
+                    <span style="position: absolute; left: 130px; top: 50%; transform: translateY(-50%); font-size: 1.4em; font-weight: bold;">목소리 톤과 어조</span>
+                </div>
+                <div style="background-color: white; width: 350px; height: 80px; border-radius: 15px; position: relative;">
+                    <!-- 작은 직사각형 -->
+                    <div style="background-color: #173F99; width: 80px; height: 60px; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); border-radius: 10px;"></div>
+                    <!-- 이미지 -->
+                    <img src="../images/img_page2(2).png" alt="Star" style="width: 35px; height: 35px; position: absolute; left: 32px; top: 50%; transform: translateY(-50%);">
+                    <!-- 텍스트 -->
+                    <span style="position: absolute; left: 130px; top: 50%; transform: translateY(-50%); font-size: 1.4em; font-weight: bold;">캐릭터의 배경</span>
+                </div>
+            </div>
+            <!-- 세 번째 직사각형 -->
+            <div style="display: flex; justify-content: center; margin-top: 50px; border-radius: 15px;">
+                <div style="background-color: white; width: 350px; height: 80px; margin-right: 40px; border-radius: 15px; position: relative;">
+                    <!-- 작은 직사각형 -->
+                    <div style="background-color: #173F99; width: 80px; height: 60px; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); border-radius: 10px;"></div>
+                    <!-- 이미지 -->
+                    <img src="../images/img_page2(3).png" alt="Star" style="width: 35px; height: 35px; position: absolute; left: 32px; top: 50%; transform: translateY(-50%);">
+                    <!-- 텍스트 -->
+                    <span style="position: absolute; left: 130px; top: 50%; transform: translateY(-50%); font-size: 1.4em; font-weight: bold;">말투의 특징</span>
+                </div>
+                <div style="background-color: white; width: 350px; height: 80px; border-radius: 15px; position: relative; margin-bottom: 15px;">
+                    <!-- 작은 직사각형 -->
+                    <div style="background-color: #E9F0FF; width: 80px; height: 60px; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); border-radius: 10px;"></div>
+                    <!-- 이미지 -->
+                    <img src="../images/img_page2(4).png" alt="Star" style="width: 35px; height: 35px; position: absolute; left: 32px; top: 50%; transform: translateY(-50%);">
+                    <!-- 텍스트 -->
+                    <span style="position: absolute; left: 130px; top: 50%; transform: translateY(-50%); font-size: 1.4em; font-weight: bold;">캐릭터의 성격</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="page3">
+            <!-- 첫 번째 그룹 -->
+            <div style="display: flex; margin-bottom: 50px;">
+                <!-- 이미지 -->
+                <div style="flex: 1;">
+                    <img src="../images/img_page3(1).png" alt="Left Image 1" style="max-width: 75%; max-width: 75%">
+                </div>
+                <!-- 텍스트 -->
+                <div style="flex: 1; padding-left: 20px; text-align: left;">
+                    <h2 style="margin-bottom: 5px; display: flex; align-items: center;">캐릭터를 선택하세요
+                        <img src="../images/img_page3(4).png" alt="Character Image" style="margin-left: 10px; width: 30px; height: 30px;">
+                    </h2>
+                    <div style="overflow: hidden; text-overflow: ellipsis;">
+                        <!-- 텍스트가 넘치면 생략 (...) 처리 -->
+                        <p style="white-space: nowrap; color: #6B6B6B;">
+                            대화를 원하는 캐릭터를 선택해 주세요.
+                            <br>캐릭터를 고르기 어렵다면, 캐릭터 소개를 읽어보고,
+                            <br>매력적인 캐릭터를 선택해 주세요.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- 두 번째 그룹 -->
+            <div style="display: flex; margin-bottom: 10px;">
+                <!-- 텍스트 -->
+                <div style="flex: 1; padding-right: 20px; text-align: right;">
+                    <h2 style="margin-bottom: 5px;">캐릭터에게 말을 걸어보세요
+                        <img src="../images/img_page3(5).png" alt="Character Image" style="margin-left: 5px; width: 30px; height: 30px;">
+                    </h2>
+                    <div style="overflow: hidden; text-overflow: ellipsis;"> <!-- 텍스트가 넘치면 생략 (...) 처리 -->
+                        <p style="white-space: nowrap; color: #6B6B6B;">캐릭터에게 다양한 질문을 해보세요.
+                            <br>각 캐릭터들의 성격이나 특징에 따라서 다양한 
+                            <br>답변을 얻을 수 있을 거에요.</p>
+                    </div>
+                </div>
+                <!-- 이미지 -->
+                <div style="flex: 1;">
+                    <img src="../images/img_page3(2).png" alt="Left Image 2" style="max-width: 90%; max-width: 80%">
+                </div>
+            </div>
+        
+            <!-- 세 번째 그룹 -->
+            <div style="display: flex; margin-top: 50px;">
+                <!-- 이미지 -->
+                <div style="flex: 1;">
+                    <img src="../images/img_page3(3).png" alt="Left Image 1" style="max-width: 83%; max-width: 83%">
+                </div>
+                <!-- 텍스트 -->
+                <div style="flex: 1; padding-left: 20px; text-align: left;">
+                    <h2 style="margin-bottom: 5px; display: flex; align-items: center;">캐릭터의 음성을 들어보세요
+                        <img src="../images/img_page3(6).png" alt="Character Image" style="margin-left: 10px; width: 30px; height: 30px;">
+                    </h2>
+                    <div style="overflow: hidden; text-overflow: ellipsis;">
+                        <!-- 텍스트가 넘치면 생략 (...) 처리 -->
+                        <p style="white-space: nowrap; color: #6B6B6B;">
+                            재생 버튼을 눌러 캐릭터의 음성을 들어보세요.
+                            <br>마치 캐릭터와 실제로 대화하는 것 같은 기분이
+                            <br>들거에요!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="page4">
+            <h1 style="font-size: 2.2em; margin-top: 0px; line-height: 1.7;">다양한 캐릭터들이<br>업데이트 될 예정이에요. </h1>
+            <img src="../images/img_line.png" alt="Character Image" style="margin-top: 15px;">
+            <img src="../images/img_page4.png" alt="Character Image" style="width: 70%; height: 30%; margin-top: 30px;">
+        </section>
+
+        <section class="page" id="page5" style="margin-top: 0; margin-bottom: 0; margin-left: 0;">
+            <h2 style="font-size: smaller; margin-top: 0; margin-bottom: 5px; color: white; font-weight: normal; margin-left: 0;">TEAM “ENTALK”</h2>
+            <p style="font-size: smaller; margin-top: 0; margin-bottom: 5px; color: white; margin-left: 0;">깃허브 링크<br>노션 링크 </p>
+            <h2 style="font-size: smaller; margin-top: 10px; margin-bottom: 5px; color: white; font-weight: normal; margin-left: 0;">Contect us</h2>
+            <h2 style="font-size: smaller; margin-top: 1px; margin-bottom: 0; color: white; font-weight: normal; margin-left: 0;">구글메일</h2>
+            <img src="../images/img_line2.png" alt="Character Image" style="width: 100%; margin-top: 25px;">
+          </section>
+    </div>      
+
+    <div id="chatroom" style="display: none;">
+        <aside id="sidebar">
+            <button id="createNewRoom">New chat +</button>
+            <p id="days">Previous 7 Days</p>
+            <ul id="rooms">
+                <li onclick="changeRoom('room1')">Room 1</li>
+                <li onclick="changeRoom('room2')">Room 2</li>
+            </ul>
+        </aside>
+        <section id="chat-area">
+            <div id="messages">
+                <!-- 초기 이미지와 버튼은 이 부분에 추가될 것입니다. -->
+            </div>
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Enter your message...">
+                <button id="runPython" onclick="sendMessage()">Send</button>
+            </div>
+        </section>
+    </div>
+
+    <!--new chat modal 띄우기-->
+    <div id="newChatModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="profile-section">
+                <img src="../images/img_sherlockProfile.png" alt="Sherlock Holmes" class="profile-pic-big">
+                <div class="profile-details">
+                    <h3>Introduction</h3>
+                    <p id="introduction">details</p>
+                    <h3>Actor</h3>
+                    <p id="actor">actor name</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/sherlockModal.js"></script>
+    <script src="js/setupModal.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setupInitialContent(); // 첫 화면에 초기 내용을 설정하는 함수 호출
+            document.getElementById('createNewRoom').addEventListener('click', function() {
+                openModal(); // Nexchat 버튼 클릭 시 팝업 열기
+            });
+            document.getElementById('runPython').onclick = sendMessage; // 'Send' 버튼에 이벤트 연결
+            
+            // X 버튼 클릭 시 팝업 창 닫기
+            const closeButton = document.querySelector('.close');
+            if (closeButton) {
+                closeButton.addEventListener('click', closeModal);
+            }
+        });
+
+        function startChat() {
+            document.getElementById('main-screen').style.display = 'none';
+            const chatroom = document.getElementById('chatroom');
+            chatroom.style.display = 'flex';
+            chatroom.classList.add('active'); // chatroom에 active 클래스 추가
+        }
+
+        // 팝업 창을 닫는 함수
+        function closeModal() {
+            const modal = document.getElementById('newChatModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // X 버튼 클릭 시 팝업 창 닫기
+        const closeButton = document.querySelector('.close');
+        if (closeButton) {
+            closeButton.addEventListener('click', closeModal);
+        }
+    </script>
+</body>
+</html>
