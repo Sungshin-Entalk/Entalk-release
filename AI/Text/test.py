@@ -26,18 +26,8 @@ assistant_id = os.getenv('assistant_id')
 current_dir = os.path.dirname(__file__)
 data_dir = os.path.abspath(os.path.join(current_dir, '..', '..', 'Data'))
 
-file_script_path = os.path.join(data_dir, '셜록 대사_스크립트.pdf')
-file_personality_path = os.path.join(data_dir, '셜록 베네딕트 컴버배치_말투특징.pdf')
-
-file_script = client.files.create(
-    file=open(file_script_path, "rb"),
-    purpose="assistants",
-)
-
-file_personality = client.files.create(
-    file=open(file_personality_path, "rb"),
-    purpose="assistants",
-)
+file_script_path = os.path.join(data_dir, '셜록 대사_스크립트_뉴(전체).pdf')
+file_personality_path = os.path.join(data_dir, '셜록_말투특징_뉴(영어).pdf')
 
 def get_user_input():
     return sys.argv[1] if len(sys.argv) > 1 else "기본 메시지"
@@ -99,30 +89,40 @@ if __name__ == "__main__":
     main()
 
 # 어시스턴트 생성
+# 어시스턴트 id: asst_wotH0WRdupyGd35n5ChYcgAi
 # assistant = client.beta.assistants.create(
-#     name="엔톡(베네딕트 컴버배치 ver)",
+#     name="엔톡_new(베네딕트 컴버배치 ver)",
 #     instructions="""
-#         You're a chatbot representing Sherlock Holmes. You engage in everyday conversations following Sherlock Holmes' mannerisms.
-#         The primary language for conversation is English. However, please provide responses in Korean within parentheses. An example response template is as follows:
-#
-#         "I think that ~ (나는 ~라고 생각해.)"
-#
-# Refer to the following files for Sherlock Holmes' personality, tone, and situational responses:
+#       The assistant must strictly adhere to the following guidelines during the conversation:
 
-# - Refer to the script in 'Sherlock Dialogue_Script.pdf' and respond similarly to similar questions.
-# - Reflect on Sherlock Holmes' tone, personality, and mannerisms while referring to the script's dialogues.
-# - You can understand Sherlock Holmes' tone, personality, and mannerisms by referring to 'Sherlock Benedict Cumberbatch_Speech Patterns.pdf'.
-# - Keep responses concise, with a maximum of 5 sentences.
-# - For simple questions like greetings or self-introductions, keep your response to 1-2 lines
-#     """,
-#     tools=[{"type": "retrieval"}],
+#      - Start the conversation in a curt manner as Sherlock Holmes would.
+#        Incorrect example: 'Hello! How can I assist you today?'
+#        Correct examples: 'Ah, you again. What trivial matter do you bring to my attention this time?', 'What is it now? I hope it's something that actually requires my intellect.', 'Oh, it's you. Make it quick, I'm in the middle of something important.', 'You have my attention for the next five minutes. Use it wisely.' etc.
+
+#      - Refer to '셜록_말투특징_뉴(영어).pdf' for Sherlock Holmes' personality and mannerisms.
+
+#      - Refer to '셜록 대사_스크립트_뉴(전체).pdf' for expected responses from Sherlock Holmes.
+
+#      - Always respond in English.
+#      - And also translate it into Korean. 
+#         example: I am a student. (나는 학생이야.)
+# #     """,
+#     tools=[{"type": "file_search"}],
 #     model="gpt-3.5-turbo",
-#     file_ids=[file_script.id, file_personality.id],
+#     #file_ids=[file_script.id, file_personality.id],
 # )
 
 # print(assistant)
 
+# 어시스턴트 업데이트 
+# assistant = client.beta.assistants.update(
+#   assistant_id=assistant_id,
+#   tool_resources={"file_search": {"vector_store_ids": [vector_store.id]}},
+# )
+
 #스레드 생성
+# 스레드 id: thread_BSiSokZBPVLrOPr9KlgRlgv2
 # thread_id = client.beta.threads.create()
-#
+
 # print(thread_id)
+
