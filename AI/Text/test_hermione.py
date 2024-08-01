@@ -13,7 +13,7 @@ current_dir = os.path.dirname(__file__)
 aws_dir = os.path.abspath(os.path.join(current_dir, '..', '..', 'AWS'))
 sys.path.append(aws_dir)
 
-from aws_text import save_to_dynamodb
+from aws_text_hermione import save_to_dynamodb
 
 # OPENAI 클라이언트 생성
 openai.api_key = os.getenv('openai_api_key')
@@ -72,18 +72,18 @@ def main():
     
     if messages.data:
         user_message = user_input
-        sherlock_response = messages.data[0].content[0].text.value
-        print(sherlock_response)
-        save_to_dynamodb(user_message, sherlock_response)
+        hermione_response = messages.data[0].content[0].text.value
+        print(hermione_response)
+        save_to_dynamodb(user_message, hermione_response)
     else:
         print("No messages retrieved.")
     
      # 가상 환경의 Python 경로 설정, python 실행코드
-    # venv_python_path = os.path.abspath(os.path.join(current_dir, '..', '..', 'venv', 'bin', 'python3'))
-    # audio_script_path = os.path.abspath(os.path.join(current_dir, '..', 'Audio', 'Audio.py'))
-    # audio_s3_path = os.path.abspath(os.path.join(current_dir, '..', 'Audio', 'Audio_s3.py'))
-    # subprocess.run([venv_python_path, audio_script_path], check=True, capture_output=True, text=True)
-    # subprocess.run([venv_python_path, audio_s3_path], check=True, capture_output=True, text=True)
+    venv_python_path = os.path.abspath(os.path.join(current_dir, '..', '..', 'venv', 'bin', 'python3'))
+    audio_script_path = os.path.abspath(os.path.join(current_dir, '..', 'Audio', 'hermione', 'Audio_hermione.py'))
+    audio_s3_path = os.path.abspath(os.path.join(current_dir, '..', 'Audio', 'hermione', 'Audio_s3_hermione.py'))
+    subprocess.run([venv_python_path, audio_script_path], check=True, capture_output=True, text=True)
+    subprocess.run([venv_python_path, audio_s3_path], check=True, capture_output=True, text=True)
     
 if __name__ == "__main__":
     main()
