@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Hover Effect</title>
+    <style>
+        .gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container {
+            position: relative;
+            width: 350px;
+            height: 470px;
+            margin: 15px;
+            transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease, background-image 0.3s ease;
+            overflow: hidden;
+            background-image: url('images/default-bg.jpg'); /* 기본 배경 이미지 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+
+        .image-container:hover {
+            width: 400px;
+            height: 520px;
+            z-index: 1;
+            background-image: url('images/hover-bg.jpg'); /* 호버 시 배경 이미지 */
+        }
+
+        .card__button {
+            background-color: white;
+            padding: .75rem 1rem;
+            color: black;
+            display: flex;
+            align-items: center;
+            column-gap: .5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.4s, opacity 0.4s;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .image-container:hover .card__button {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+            pointer-events: auto;
+        }
+
+        .card__button i {
+            font-size: 1.25rem;
+            transition: transform 0.4s;
+        }
+
+        .card__button:hover i {
+            transform: translateX(0.5rem);
+        }
+
+        .dimmed {
+            filter: brightness(50%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="gallery">
+        
+        <div class="image-container">
+            <img src="images/sherlock_card.png" alt="Example Image 1">
+            <!-- <a href="#" class="card__button">
+                Start
+            </a> -->
+        </div>
+        <div class="image-container">
+            <img src="images/hermione_card.png" alt="Example Image 2">
+            <!-- <a href="#" class="card__button">
+                Start
+            </a> -->
+        </div>
+        <div class="image-container">
+            <img src="images/sherlock_card.png" alt="Example Image 3">
+            <!-- <a href="#" class="card__button">
+                Start
+            </a> -->
+        </div>
+    </div>
+
+    <script>
+        const imageContainers = document.querySelectorAll('.image-container');
+
+        imageContainers.forEach(container => {
+            container.addEventListener('mouseover', () => {
+                imageContainers.forEach(otherContainer => {
+                    if (otherContainer !== container) {
+                        otherContainer.classList.add('dimmed');
+                    }
+                });
+            });
+
+            container.addEventListener('mouseleave', () => {
+                imageContainers.forEach(otherContainer => {
+                    otherContainer.classList.remove('dimmed');
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
