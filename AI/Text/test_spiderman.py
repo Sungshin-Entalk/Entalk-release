@@ -13,21 +13,21 @@ current_dir = os.path.dirname(__file__)
 aws_dir = os.path.abspath(os.path.join(current_dir, '..', '..', 'AWS'))
 sys.path.append(aws_dir)
 
-from aws_text_hermione import save_to_dynamodb
+from aws_text_spiderman import save_to_dynamodb
 
 # OPENAI 클라이언트 생성
 openai.api_key = os.getenv('openai_api_key')
 client = openai.OpenAI(api_key=openai.api_key)
 
-thread_id = os.getenv('thread_id_hermione')
-assistant_id = os.getenv('assistant_id_hermione')
+thread_id = os.getenv('thread_id_spiderman')
+assistant_id = os.getenv('assistant_id_spiderman')
 
 #경로 설정
 current_dir = os.path.dirname(__file__)
 data_dir = os.path.abspath(os.path.join(current_dir, '..', '..', 'Data'))
 
-file_script_path = os.path.join(data_dir, '헤르미온느 대사_스크립트.pdf')
-file_personality_path = os.path.join(data_dir, '헤르미온느_말투특징.pdf')
+file_script_path = os.path.join(data_dir, '스파이더맨 대사_스크립트.pdf')
+file_personality_path = os.path.join(data_dir, '스파이더맨_말투특징.pdf')
 
 def get_user_input():
     return sys.argv[1] if len(sys.argv) > 1 else "기본 메시지"
@@ -44,7 +44,7 @@ def run_conversation(client, thread_id, assistant_id):
     run = client.beta.threads.runs.create(
         thread_id=thread_id,
         assistant_id=assistant_id,
-        instructions = "I am Hermione Granger, the brightest witch of my age from Hogwarts School of Witchcraft and Wizardry. Speak to me as you would to Hermione herself."
+        instructions = "I am Spider-Man, specifically the version portrayed by Tom Holland in the Marvel Cinematic Universe. Talk to me as if you're speaking to Spider-Man himself, the friendly neighborhood superhero."
     )
     
     while run.status != "completed":
@@ -125,3 +125,4 @@ if __name__ == "__main__":
 # thread_id = client.beta.threads.create()
 
 # print(thread_id)
+
