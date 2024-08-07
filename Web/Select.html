@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Hover Effect</title>
+    <title>Select Character</title>
     <style>
+        body {
+            transition: background-image 0.3s ease, background-color 0.3s ease;
+            background-color: #0E0E0E;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px; /* Ensures the header has some space from the top */
+        }
+
+        .header {
+            position: absolute;
+            top: 50px; /* Positions the header a bit lower from the top */
+            width: 100%;
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .subheader {
+            font-size: 36px;
+            margin-top: 20px; /* Increases the space between the main header and the subheader */
+        }
+
         .gallery {
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 150px; /* Ensures the gallery has some space from the header */
         }
 
         .image-container {
@@ -17,11 +42,8 @@
             width: 350px;
             height: 470px;
             margin: 15px;
-            transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease, background-image 0.3s ease;
+            transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease;
             overflow: hidden;
-            background-image: url('images/default-bg.jpg'); /* 기본 배경 이미지 */
-            background-size: cover;
-            background-position: center;
         }
 
         .image-container img {
@@ -35,11 +57,9 @@
             width: 400px;
             height: 520px;
             z-index: 1;
-            background-image: url('images/hover-bg.jpg'); /* 호버 시 배경 이미지 */
         }
 
         .card__button {
-            background-color: white;
             padding: .75rem 1rem;
             color: black;
             display: flex;
@@ -77,33 +97,28 @@
         }
     </style>
 </head>
-
 <body>
-
-    <div class="gallery">
-        
-        <div class="image-container">
-            <img src="images/sherlock_card.png" alt="Example Image 1">
-            <!-- <a href="#" class="card__button">
-                Start
-            </a> -->
-        </div>
-        <div class="image-container">
-            <img src="images/hermione_card.png" alt="Example Image 2">
-            <!-- <a href="#" class="card__button">
-                Start
-            </a> -->
-        </div>
-        <div class="image-container">
-            <img src="images/sherlock_card.png" alt="Example Image 3">
-            <!-- <a href="#" class="card__button">
-                Start
-            </a> -->
+    <div class="header">
+        Please select the character
+        <div class="subheader">
+            you want to talk to
         </div>
     </div>
+    <div class="gallery">
+        <a href="AboutSherlock.html" class="image-container" id="sherlock-container">
+            <img src="images/sherlock_card.png" alt="Sherlock Holmes">
+        </a>
+        <a href="AboutHermione.html" class="image-container" id="hermione-container">
+            <img src="images/hermione_card.png" alt="Hermione Granger">
+        </a>
+        <a href="AboutSpiderman.html" class="image-container" id="spiderman-container">
+            <img src="images/Spiderman_card.png" alt="Spiderman">
+        </a>
+    </div>    
 
     <script>
         const imageContainers = document.querySelectorAll('.image-container');
+        const body = document.body;
 
         imageContainers.forEach(container => {
             container.addEventListener('mouseover', () => {
@@ -112,16 +127,25 @@
                         otherContainer.classList.add('dimmed');
                     }
                 });
+
+                if (container.id === 'sherlock-container') {
+                    body.style.backgroundImage = "url('images/sherlock_back.png')";
+                } else if (container.id === 'hermione-container') {
+                    body.style.backgroundImage = "url('images/hermione_back.png')";
+                } else if (container.id === 'spiderman-container') {
+                    body.style.backgroundImage = "url('images/Spiderman_back.png')";
+                }
             });
 
             container.addEventListener('mouseleave', () => {
                 imageContainers.forEach(otherContainer => {
                     otherContainer.classList.remove('dimmed');
                 });
+
+                body.style.backgroundImage = "";
+                body.style.backgroundColor = "#0E0E0E";
             });
         });
     </script>
-
 </body>
-
 </html>
