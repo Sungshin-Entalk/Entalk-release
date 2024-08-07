@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Character - Sherlock Holmes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('../images/sherlock_intro.png') no-repeat center center/cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 30px;
+            position: absolute;
+            bottom: 50px; /* Adjust this value to move the buttons up/down */
+            right: 110px; /* Adjust this value to move the buttons left/right */
+        }
+
+        .button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 50px; /* Adjusted padding to make the buttons wider */
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: grey;
+            border-color: grey;
+        }
+
+        .button.start {
+            background-color: white;
+            color: green;
+            border-color: white;
+        }
+
+        .button.start:hover {
+            background-color: green;
+            color: white;
+            border-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <a href="Select.html" class="button back">Back</a>
+        <a href="chatroom.html" class="button start">Start</a>
+    </div>
+</body>
+</html>
