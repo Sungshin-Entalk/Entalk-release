@@ -35,7 +35,26 @@ app.use(express.static(path.join(__dirname, '..', '..', 'web')));
 const pythonScriptPath = path.join(__dirname, "..", "..", "AI", "Text", "test.py");
 
 app.post('/submit', async (req, res) => {
+
+    console.log('Received request:', req.body);
+
     const userMessage = req.body.message;
+    const character = req.body.character; // 캐릭터 정보를 받아옴
+    let pythonScriptPath;
+
+    // 캐릭터에 따라 실행할 Python 스크립트를 선택
+    if (character === 'sherlock') {
+        pythonScriptPath = path.join(__dirname, "..", "..", "AI", "Text", "test.py");
+    } else if (character === 'spiderman') {
+        pythonScriptPath = path.join(__dirname, "..", "..", "AI", "Text", "test_spiderman.py");
+    } else if (character === 'hermione') {
+        pythonScriptPath = path.join(__dirname, "..", "..", "AI", "Text", "test_hermione.py");
+    } 
+    else {
+        console.log('Unknown character:', character); // 오류 로그
+        return res.status(400).send('Unknown character');
+    }
+
     try {
         const pythonExecutable = await getPythonExecutable();
         exec(`${pythonExecutable} "${pythonScriptPath}" "${userMessage}"`, (error, stdout, stderr) => {
@@ -46,12 +65,14 @@ app.post('/submit', async (req, res) => {
             // Python 스크립트의 출력을 클라이언트에게 전송
             const userResponse = stdout.trim().split("\n").slice(-1)[0]; // 유저 메시지와 응답만 추출
             res.json({ reply: userResponse });
+            console.log('User response:', userResponse);
         });
     } catch (error) {
         console.error(error);
         res.status(500).send('Python executable not found.');
     }
 });
+
 
 // 최근 파일 URL 불러오는 라우트
 app.get('/latest-audio', async (req, res) => {
