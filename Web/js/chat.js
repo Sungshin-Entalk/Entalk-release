@@ -1,20 +1,20 @@
 $(document).ready(function() {
     let selectedCharacter = localStorage.getItem('selectedCharacter');
-            console.log("Loaded character from storage:", selectedCharacter); // 로드된 캐릭터 확인용
+    console.log("Loaded character from storage:", selectedCharacter); // 로드된 캐릭터 확인용
 
-            // 페이지에 따라 특정 로직을 처리
-            if (selectedCharacter === 'sherlock') {
-                $('#character-header').text('Welcome, Sherlock Holmes!');
-                // 셜록과 관련된 로직 추가
-            } else if (selectedCharacter === 'hermione') {
-                $('#character-header').text('Welcome, Hermione Granger!');
-                // 헤르미온느와 관련된 로직 추가
-            } else if (selectedCharacter === 'spiderman') {
-                $('#character-header').text('Welcome, Spiderman!');
-                // 스파이더맨과 관련된 로직 추가
-            } else {
-                $('#character-header').text('No character selected.');
-            }
+    // 페이지에 따라 특정 로직을 처리
+    if (selectedCharacter === 'sherlock') {
+        $('#character-header').text('Welcome, Sherlock Holmes!');
+        // 셜록과 관련된 로직 추가
+    } else if (selectedCharacter === 'hermione') {
+        $('#character-header').text('Welcome, Hermione Granger!');
+        // 헤르미온느와 관련된 로직 추가
+    } else if (selectedCharacter === 'spiderman') {
+        $('#character-header').text('Welcome, Spiderman!');
+        // 스파이더맨과 관련된 로직 추가
+    } else {
+        $('#character-header').text('No character selected.');
+    }
 
     // 문서가 로드될 때 초기 내용 설정 함수 호출
     setupInitialContent();
@@ -110,11 +110,7 @@ $(document).ready(function() {
                             $(".message-container:last").append('<button class="character-message-button" onclick="characterButtonAction()"><img src="../images/img_sound.png" alt="Sound" style="width: 40px; height: 20px; background-color: transparent; border: none;"></button>');
                         }
                     }, 50);
-                },
-                data: JSON.stringify({
-                    message: userMessage,
-                    character: selectedCharacter // 선택된 캐릭터 정보를 함께 전송
-                })
+                }
             });
 
             $("#userInput").val("");
@@ -145,10 +141,23 @@ $(document).ready(function() {
                now.getMinutes().toString().padStart(2, '0') + ':' +
                now.getSeconds().toString().padStart(2, '0');
     }
-    
-    // 셜록 메시지 버튼 액션 함수
-    window.sherlockButtonAction = function() {
-        fetch('/latest-audio')
+
+    // 캐릭터 메시지 버튼 액션 함수
+    window.characterButtonAction = function() {
+        let audioUrl;
+        
+        if (selectedCharacter === 'sherlock') {
+            audioUrl = '/latest-audio-sherlock';
+        } else if (selectedCharacter === 'hermione') {
+            audioUrl = '/latest-audio-hermione';
+        } else if (selectedCharacter === 'spiderman') {
+            audioUrl = '/latest-audio-spiderman';
+        } else {
+            console.error('No valid character selected for audio playback.');
+            return;
+        }
+
+        fetch(audioUrl)
             .then(response => response.json())
             .then(data => {
                 console.log('Audio URL:', data.url); // URL을 콘솔에 출력하여 확인
