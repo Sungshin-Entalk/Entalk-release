@@ -1,4 +1,21 @@
 $(document).ready(function() {
+    let selectedCharacter = localStorage.getItem('selectedCharacter');
+            console.log("Loaded character from storage:", selectedCharacter); // 로드된 캐릭터 확인용
+
+            // 페이지에 따라 특정 로직을 처리
+            if (selectedCharacter === 'sherlock') {
+                $('#character-header').text('Welcome, Sherlock Holmes!');
+                // 셜록과 관련된 로직 추가
+            } else if (selectedCharacter === 'hermione') {
+                $('#character-header').text('Welcome, Hermione Granger!');
+                // 헤르미온느와 관련된 로직 추가
+            } else if (selectedCharacter === 'spiderman') {
+                $('#character-header').text('Welcome, Spiderman!');
+                // 스파이더맨과 관련된 로직 추가
+            } else {
+                $('#character-header').text('No character selected.');
+            }
+
     // 문서가 로드될 때 초기 내용 설정 함수 호출
     setupInitialContent();
 
@@ -16,7 +33,7 @@ $(document).ready(function() {
     // sendMessage 함수 내의 코드 수정
     function sendMessage() {
         var userMessage = $("#userInput").val().trim();
-        if (userMessage !== '') {
+        if (userMessage !== '' && selectedCharacter !== '') { // 메시지와 캐릭터가 선택된 경우에만 실행
             // 기본 메인 화면을 숨깁니다.
             hideInitialContent();
             $("#chatroom").css("display", "flex");
@@ -36,34 +53,68 @@ $(document).ready(function() {
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json',
+                data: JSON.stringify({
+                    message: userMessage,     // 전송되는 데이터가 올바른지 확인
+                    character: selectedCharacter // character 필드가 누락되거나 잘못된 경우 오류 발생 가능
+                }),
                 success: function(data) {
-                    var sherlockResponse = data.reply;
+                    var characterResponse = data.reply;
                     var index = 0;
                     var timestamp = getCurrentTimestamp();
-                    var sherlockHtml = '<div class="message-container">' +
-                                       '<div class="user-info">' +
-                                       '<img src="../images/img_sherlock.png" alt="Sherlock" class="profile-pic">' +
-                                       '<span class="username">Sherlock Holmes</span>' +
-                                       '</div>' +
-                                       '<div class="sherlock-message">' +
-                                       '<p></p>' +
-                                       '<span class="timestamp">' + timestamp + '</span>' +
-                                       '</div>' +
-                                       '</div>';
-                    $("#messages").append(sherlockHtml);
-                    var $sherlockMessage = $(".sherlock-message:last p");
+
+                    // 캐릭터에 따라 다르게 처리
+                    var characterHtml;
+                    if (selectedCharacter === 'sherlock') {
+                        characterHtml = '<div class="message-container">' +
+                                        '<div class="user-info">' +
+                                        '<img src="../images/img_sherlock.png" alt="Sherlock" class="profile-pic">' +
+                                        '<span class="username">Sherlock Holmes</span>' +
+                                        '</div>' +
+                                        '<div class="sherlock-message">' +
+                                        '<p></p>' +
+                                        '<span class="timestamp">' + timestamp + '</span>' +
+                                        '</div>' +
+                                        '</div>';
+                    } else if (selectedCharacter === 'spiderman') {
+                        characterHtml = '<div class="message-container">' +
+                                        '<div class="user-info">' +
+                                        '<img src="../images/img_spiderman.png" alt="Spiderman" class="profile-pic">' +
+                                        '<span class="username">Spiderman</span>' +
+                                        '</div>' +
+                                        '<div class="spiderman-message">' +
+                                        '<p></p>' +
+                                        '<span class="timestamp">' + timestamp + '</span>' +
+                                        '</div>' +
+                                        '</div>';
+                    }
+                    else if (selectedCharacter === 'hermione') {
+                        characterHtml = '<div class="message-container">' +
+                                        '<div class="user-info">' +
+                                        '<img src="../images/img_hermione.png" alt="hermione" class="profile-pic">' +
+                                        '<span class="username">hermione</span>' +
+                                        '</div>' +
+                                        '<div class="hermione-message">' +
+                                        '<p></p>' +
+                                        '<span class="timestamp">' + timestamp + '</span>' +
+                                        '</div>' +
+                                        '</div>';
+                    }
+                    $("#messages").append(characterHtml);
+                    var $characterMessage = $(".message-container:last p");
                     var interval = setInterval(function() {
-                        $sherlockMessage.text(sherlockResponse.substring(0, index));
+                        $characterMessage.text(characterResponse.substring(0, index));
                         scrollToBottom();
                         index++;
-                        if (index > sherlockResponse.length) {
+                        if (index > characterResponse.length) {
                             clearInterval(interval);
-                            // 답변이 끝나면 이미지 버튼 추가
-                            $(".sherlock-message:last").append('<button class="sherlock-message-button" onclick="sherlockButtonAction()"><img src="../images/img_sound.png" alt="Sound" style="width: 40px; height: 20px;  background-color: transparent; border: none;"></button>');
+                            $(".message-container:last").append('<button class="character-message-button" onclick="characterButtonAction()"><img src="../images/img_sound.png" alt="Sound" style="width: 40px; height: 20px; background-color: transparent; border: none;"></button>');
                         }
-                    }, 50); // Adjust the interval for the speed of text display
+                    }, 50);
                 },
-                data: JSON.stringify({ message: userMessage })
+                data: JSON.stringify({
+                    message: userMessage,
+                    character: selectedCharacter // 선택된 캐릭터 정보를 함께 전송
+                })
             });
 
             $("#userInput").val("");
