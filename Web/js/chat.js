@@ -107,8 +107,10 @@ $(document).ready(function() {
                         index++;
                         if (index > characterResponse.length) {
                             clearInterval(interval);
-                            $(".message-container:last").append('<button class="character-message-button" onclick="characterButtonAction()"><img src="../images/img_sound.png" alt="Sound" style="width: 40px; height: 20px; background-color: transparent; border: none;"></button>');
-                        }
+                            $(".message-container:last").css("position", "relative"); // Ensure the container is relatively positioned
+                            $(".message-container:last .sherlock-message, .message-container:last .hermione-message, .message-container:last .spiderman-message")
+                            .append('<button class="character-message-button" onclick="characterButtonAction()" style="position: absolute; bottom: -20px; right: -20px; width: 30px; height: 25px; background-color: transparent; border: none;"><img src="../images/img_sound.png" alt="Sound" style="width: 30px; height: 20px; background-color: transparent; border: none;"></button>');
+                        }                                  
                     }, 50);
                 }
             });

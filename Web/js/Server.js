@@ -30,7 +30,7 @@ const s3 = new AWS.S3({
 });
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', '..', 'Web')));
+app.use(express.static(path.join(__dirname, '..', '..', 'web')));
 
 const pythonScriptPath = path.join(__dirname, "..", "..", "AI", "Text", "test.py");
 
