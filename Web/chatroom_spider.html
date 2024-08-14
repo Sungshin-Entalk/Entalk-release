@@ -6,20 +6,51 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/chat.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('../images/Spiderman_back.png'); /* Hermione Background */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </head>
 <body>
+    <div id="top-bar">
+        <img src="../images/Entalk_logo.png" alt="Entalk Logo" class="logo">
+    </div>
+    <!-- Horizontal line -->
+    <div class="horizontal-line"></div>
+
     <div id="chatroom">
         <aside id="sidebar">
-            <button id="createNewRoom">New chat +</button>
-            <p id="days">Previous 7 Days</p>
-            <ul id="rooms">
-                <li onclick="changeRoom('room1')">Room 1</li>
-                <li onclick="changeRoom('room2')">Room 2</li>
-            </ul>
+            <div>
+                <button id="createNewRoom">New chat +</button>
+                <p id="days">Previous 7 Days</p>
+                <ul id="rooms">
+                    <li onclick="changeRoom('room1')">Room 1</li>
+                    <li onclick="changeRoom('room2')">Room 2</li>
+                </ul>
+            </div>
+            <div>
+                <div id="settings">
+                    <img src="../images/icon1.png" alt="Settings Icon">
+                    <span>Settings</span>
+                </div>
+                <div id="notification">
+                    <img src="../images/icon2.png" alt="Notification Icon">
+                    <span>Notifications</span>
+                </div>
+            </div>
         </aside>
         <section id="chat-area">
             <div id="messages">
-                <!-- 초기 이미지와 버튼은 이 부분에 추가될 것입니다. -->
+                <!-- Message area -->
             </div>
             <div class="input-area">
                 <input type="text" id="userInput" placeholder="Enter your message...">
@@ -28,17 +59,14 @@
         </section>
     </div>
 
-    <!-- new chat modal 띄우기 -->
+    <!-- Modal Structure -->
     <div id="newChatModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="profile-section">
                 <img src="../images/img_sherlockProfile.png" alt="Sherlock Holmes" class="profile-pic-big">
                 <div class="profile-details">
-                    <h3>Introduction</h3>
-                    <p id="introduction">details</p>
-                    <h3>Actor</h3>
-                    <p id="actor">actor name</p>
+                    <!-- Details will be updated by JavaScript -->
                 </div>
             </div>
         </div>
@@ -50,19 +78,17 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            setupInitialContent(); // 첫 화면에 초기 내용을 설정하는 함수 호출
+            setupInitialContent();
             document.getElementById('createNewRoom').addEventListener('click', function() {
-                openModal(); // New chat 버튼 클릭 시 팝업 열기
+                openModal();
             });
-            document.getElementById('runPython').onclick = sendMessage; // 'Send' 버튼에 이벤트 연결
+            document.getElementById('runPython').onclick = sendMessage;
 
-            // X 버튼 클릭 시 팝업 창 닫기
             const closeButton = document.querySelector('.close');
             if (closeButton) {
                 closeButton.addEventListener('click', closeModal);
             }
 
-            // URL 해시가 #chatroom일 때 초기 화면을 숨기고 채팅 화면을 보여줌
             if (window.location.hash === '#chatroom') {
                 document.getElementById('main-screen').style.display = 'none';
                 const chatroom = document.getElementById('chatroom');
@@ -75,10 +101,9 @@
             document.getElementById('main-screen').style.display = 'none';
             const chatroom = document.getElementById('chatroom');
             chatroom.style.display = 'flex';
-            chatroom.classList.add('active'); // chatroom에 active 클래스 추가
+            chatroom.classList.add('active');
         }
 
-        // 팝업 창을 닫는 함수
         function closeModal() {
             const modal = document.getElementById('newChatModal');
             if (modal) {
@@ -86,7 +111,6 @@
             }
         }
 
-        // X 버튼 클릭 시 팝업 창 닫기
         const closeButton = document.querySelector('.close');
         if (closeButton) {
             closeButton.addEventListener('click', closeModal);
