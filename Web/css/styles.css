@@ -3,7 +3,11 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-image: url('../images/sherlock_back.png');
+    background-image: url('../images/hermione_back.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
 }
@@ -16,12 +20,19 @@ body, html {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-radius: 8px 8px 0 0;
     border-bottom: 0.8px solid #ccc;
 }
 
-.top-bar .logo {
-    height: 50px;
+#top-bar {
+    justify-content: space-between; /* Center the logo horizontally */
+    padding: 10px 0; /* Increase vertical padding for more space */
+    background-color: transparent;
+    z-index: 1000;
+}
+
+#top-bar .logo {
+    height: 35px; /* Reduce the height of the logo */
+    margin: 0 10px; /* Add horizontal margins */
 }
 
 .user-controls a {
@@ -33,40 +44,72 @@ body, html {
     border: 1px solid #3949AB;
 }
 
+/* Horizontal line */
+.horizontal-line {
+    width: 100%;
+    height: 1px;
+    background-color: #808080; /* Gray color for the line */
+    /*margin-bottom: 20px; /* Space below the line */
+}
+
 /* 채팅룸 및 사이드바 */
 #chatroom {
     display: flex;
-    margin: 5 auto;
     flex: 1;
     overflow: hidden;
+    background: transparent; /* Transparent background for chatroom */
+    /*margin-top: 10px; /* Adjusted to create space for top bar */
 }
 
 #sidebar {
-    width: 250px; /* 고정된 사이드바 너비 */
-    min-width: 200px; /* 최소 너비 설정 */
-    max-width: 250px; /* 최대 너비 설정 */
-    background-color: #EBECF0;
-    padding: 10px;
-    flex-shrink: 0; /* 사이드바의 크기 조절을 비활성화 */
+    width: 250px;
+    min-width: 200px;
+    max-width: 250px;
+    background: transparent; /* Semi-transparent background */
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+    border: 1px solid #808080; /* Gray border */
+    box-sizing: border-box; /* Ensure the padding and border are included in the width and height */
 }
+
 
 #days {
     margin-top: 80px;
     margin-left: 5px;
+    font-size: 14px;
+    color: #ccc;
 }
 
-#rooms li{
-    display: block;
-    background-color: white; /* 버튼의 배경색을 어두운 파란색으로 설정 */
-    border: none;
-    width: 105%;
-    text-align: center;
+#rooms {
+    list-style-type: none;
+    padding: 0;
+}
+
+#sidebar button,
+#rooms li {
+    background: #282828; /* Transparent buttons */
+    color: white; /* White text */
+    border: 1px solid white; /* White border */
+    padding: 10px;
     border-radius: 5px;
-    margin-left: -40px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    text-align: center;
     cursor: pointer;
-    font-weight: bold; /* 텍스트를 굵게 설정 */
-    padding: 10px 15px; /* 버튼 내부의 패딩을 조정 */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#sidebar button:hover,
+#rooms li:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Light white on hover */
+}
+
+#rooms li:active {
+    background-color: #666;
 }
 
 #createNewRoom {
@@ -83,14 +126,25 @@ body, html {
     padding: 10px 15px; /* 버튼 내부의 패딩을 조정 */
 }
 
-#rooms li:hover, #sidebar button:hover {
-    background-color: #d1d1d1; /* 호버 시 배경색 변경 */
-}
-
 #createNewRoom:hover {
     background-color: #0d2457; /* 'Create New Room' 버튼의 호버 색상을 더 어두운 파란색으로 설정 */
 }
 
+#sidebar #settings, #sidebar #notification {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#sidebar #settings img, #sidebar #notification img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+#rooms li:hover, #sidebar button:hover {
+    background-color: #d1d1d1; /* 호버 시 배경색 변경 */
+}
 
 /* 메인 채팅 영역 */
 #chat-area {
@@ -99,9 +153,10 @@ body, html {
     height: 100%;
     flex-direction: column;
     overflow-y: auto;
-    overflow-x: hidden; /* 가로 스크롤을 숨김 */
-    background-color: #fff;
-    border-left: 1px solid #ccc;
+    padding: 20px;
+    color: white;
+    background: transparent; /* Transparent background */
+    margin-left: 1px; /* Slight margin to avoid overlap */
 }
 
 #messages {
@@ -130,17 +185,17 @@ body, html {
 }
 
 .input-area {
-    display: none;
     position: fixed;
     bottom: 0;
-    left: 270px; /* 사이드바 너비만큼 왼쪽 여백 설정 */
+    left: 250px; /* Adjusted to align with the sidebar */
     right: 0; /* 오른쪽 끝까지 확장 */
     display: flex;
     padding: 10px;
-    background-color: white;
+    background-color: transparent; /* Background is now transparent */
     box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
-    border-top: 1px solid #ccc;
-    z-index: 999; /* 다른 요소 위에 위치하도록 z-index 설정 */
+    border-top: 1px solid #808080; /* Match the sidebar border color */
+    z-index: 999; /* Ensure it stays on top */
+    box-sizing: border-box; /* Ensure the padding and border are included in the width and height */
 }
 
 /* .input-area를 숨기고 .chatroom을 flex로 표시 */
@@ -152,30 +207,36 @@ body, html {
     flex: 1;
     padding: 10px;
     border-radius: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid white;
+    color: white;
+    background-color: transparent; /* Background is now transparent */
 }
 
 .input-area button {
-    flex: none; /* 너비 고정을 위해 flex-grow 사용 중지 */
-    width: 100px; /* 버튼의 너비 고정 */
-    background-color: #3949AB;
+    flex: none; /* Fixed width */
+    width: 100px;
+    background-color: transparent;
     color: white;
-    border: none;
+    border: 1px solid white; /* Match the sidebar border color */
     margin-left: 8px;
     border-radius: 20px;
     padding: 10px 20px;
     cursor: pointer;
 }
 
+.input-area button:hover {
+    background-color: #505050; /* Darker gray on hover */
+}
+
 
 
 /*메세지버블*/
 .message-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     /*align-items: flex-start;*/
     margin-top: 10px;
-    position: relative; /* 부모 요소로부터의 상대적인 위치 설정 */
 }
 
 .user-info {
@@ -193,11 +254,12 @@ body, html {
 
 .username {
     font-weight: bold;
-    color: black; 
+    color: white; 
 }
 /* 사용자 채팅 메시지 */
 .user-message {
-    background-color: #E9F0FF;
+    background-color: #dcdcdc;
+    color : black;
     border-radius: 21px 0 21px 21px;
     min-width: 10px;
     max-width: 25%;
@@ -212,9 +274,8 @@ body, html {
 
 
 /* 셜록 홈즈의 채팅 메시지 */
-/* 셜록 홈즈의 채팅 메시지 */
-.sherlock-message {
-    background-color: #173F99;
+.sherlock-message, .hermione-message, .spiderman-message {
+    background-color: #323232;
     color: white;
     border-radius: 21px 21px 21px 0;
     min-width: 10px;
@@ -223,10 +284,11 @@ body, html {
     text-align: left;
     align-self: flex-start;
     padding-left: 15px;
-    padding-right: 8px;
-    position: relative; /* 상대적 위치 설정 */
-    overflow: visible; /* 버튼이 상자 밖으로 나가도록 함 */
+    padding-right: 30px; /* Increase right padding to make room for the button */
+    position: relative; /* Relative positioning for the speaker button */
+    overflow: visible; /* Allow the button to be visible even if it overflows */
 }
+
 
 /*모달(팝업)창*/
 
@@ -304,30 +366,38 @@ body, html {
 /* 타임스탬프 */
 .timestamp {
     font-size: 0.8em;
-    color: #888;
+    color: white;
     position: absolute; /* 절대 위치 설정 */
     bottom: -20px; /* 아래로 이동 */
     left: 15px;
 }
 
 /* 셜록 메시지 버튼 스타일 */
-.sherlock-message-button {
-    background-color: transparent; /* 배경색을 투명으로 설정 */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
+/* Speaker button style */
+/* CSS for the speaker button */
+.character-message-button {
+    background-color: transparent; /* Keep the background transparent */
+    border: none; /* No border */
+    position: absolute; /* Position relative to the message bubble */
+    bottom: -20px; /* Move the button further down below the bubble */
+    right: -50px; /* Move the button far to the right outside the bubble */
+    width: 25px; /* Button width */
+    height: 25px; /* Button height */
     cursor: pointer;
-    margin-left: 30px; /* 타임스탬프와의 간격 */
-    font-size: 0.8em;
-    position: absolute; /* 절대적 위치 설정 */
-    bottom: -25px; /* 답변 상자의 바닥으로부터의 거리 조정 */
-    right: -35px; /* 답변 상자의 우측으로부터의 거리 조정 */
+    z-index: 200; /* Ensure it's on top of other elements */
 }
 
-.sherlock-message-button:hover {
-    background-color: transparent; /* 배경색을 투명으로 설정 */
+.character-message-button img {
+    width: 30px; /* Size of the speaker icon */
+    height: 20px;
+    background-color: transparent; /* Transparent background for the icon */
+    border: none; /* No border for the icon */
 }
+
+.character-message-button:hover {
+    background-color: transparent; /* Keep the background transparent on hover */
+}
+
 
 /* 첫 메인 화면 */
 #main-screen {
@@ -406,4 +476,16 @@ body, html {
 
 #page1 button:hover {
     background-color: #173F99;
+}
+
+#sidebar #settings, #sidebar #notification {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#sidebar #settings img, #sidebar #notification img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
 }

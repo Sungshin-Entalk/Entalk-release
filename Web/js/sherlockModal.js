@@ -48,7 +48,7 @@ function setupButtons() {
         const fontSize = 16; // 폰트 사이즈 설정
         button.style.padding = '30px 10px 30px 10px'; // padding: top right bottom left
         button.style.fontSize = `${fontSize}px`;
-        button.style.backgroundColor = '#E9F0FF';
+        button.style.backgroundColor = '#dcdcdc';
         button.style.color = '#333';
         button.style.border = 'none';
         button.style.margin = '0px 40px 0px 0px'; // margin: top right bottom left
