@@ -30,7 +30,7 @@ const s3 = new AWS.S3({
 });
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', '..', 'web')));
+app.use(express.static(path.join(__dirname, '..', '..', 'Web')));
 
 const pythonScriptPath = path.join(__dirname, "..", "..", "AI", "Text", "test.py");
 
@@ -75,37 +75,99 @@ app.post('/submit', async (req, res) => {
 
 
 // 최근 파일 URL 불러오는 라우트
-app.get('/latest-audio', async (req, res) => {
+// 셜록 audio 연결 코드
+app.get('/latest-audio-sherlock', async (req, res) => {
     const params = {
-        Bucket: 'aws-entalk', // 버킷 이름
-        Prefix: 'audio/output-' // 'audio/' 폴더 내 'output-'로 시작하는 파일
+        Bucket: 'aws-entalk',
+        Prefix: 'audio/output-' // 셜록의 오디오 파일이 'audio/sherlock-'로 시작한다고 가정
     };
 
     try {
         const s3Response = await s3.listObjectsV2(params).promise();
         const objects = s3Response.Contents;
+
         if (objects.length === 0) {
-            console.log('No audio files found');
-            return res.status(404).send({ message: 'No audio files found' });
+            console.log('No Sherlock audio files found');
+            return res.status(404).send({ message: 'No Sherlock audio files found' });
         }
 
-        // 가장 최근 파일을 찾기 위해 정렬
         const sortedFiles = objects.sort((a, b) => b.LastModified - a.LastModified);
-        
-        // 가장 최근 파일의 URL 가져오기
         const latestFile = sortedFiles[0];
         const url = s3.getSignedUrl('getObject', {
             Bucket: 'aws-entalk',
             Key: latestFile.Key,
-            Expires: 60 * 5 // URL은 5분 동안 유효
+            Expires: 60 * 5
         });
-        console.log('Latest audio URL:', url);
+        console.log('Latest Sherlock audio URL:', url);
         res.send({ url });
     } catch (error) {
-        console.error('Error fetching the latest audio:', error);
-        res.status(500).send({ message: 'Error fetching the latest audio' });
+        console.error('Error fetching the latest Sherlock audio:', error);
+        res.status(500).send({ message: 'Error fetching the latest Sherlock audio' });
     }
 });
+
+// 헤르미온느 audio 연결 코드
+app.get('/latest-audio-hermione', async (req, res) => {
+    const params = {
+        Bucket: 'aws-entalk',
+        Prefix: 'hermione/output-' // 헤르미온느의 오디오 파일이 'audio/hermione-'로 시작한다고 가정
+    };
+
+    try {
+        const s3Response = await s3.listObjectsV2(params).promise();
+        const objects = s3Response.Contents;
+
+        if (objects.length === 0) {
+            console.log('No Hermione audio files found');
+            return res.status(404).send({ message: 'No Hermione audio files found' });
+        }
+
+        const sortedFiles = objects.sort((a, b) => b.LastModified - a.LastModified);
+        const latestFile = sortedFiles[0];
+        const url = s3.getSignedUrl('getObject', {
+            Bucket: 'aws-entalk',
+            Key: latestFile.Key,
+            Expires: 60 * 5
+        });
+        console.log('Latest Hermione audio URL:', url);
+        res.send({ url });
+    } catch (error) {
+        console.error('Error fetching the latest Hermione audio:', error);
+        res.status(500).send({ message: 'Error fetching the latest Hermione audio' });
+    }
+});
+
+// 스파이더맨 audio 연결 코드
+app.get('/latest-audio-spiderman', async (req, res) => {
+    const params = {
+        Bucket: 'aws-entalk',
+        Prefix: 'spiderman/output-' 
+    };
+
+    try {
+        const s3Response = await s3.listObjectsV2(params).promise();
+        const objects = s3Response.Contents;
+
+        if (objects.length === 0) {
+            console.log('No Spiderman audio files found');
+            return res.status(404).send({ message: 'No Spiderman audio files found' });
+        }
+
+        const sortedFiles = objects.sort((a, b) => b.LastModified - a.LastModified);
+        const latestFile = sortedFiles[0];
+        const url = s3.getSignedUrl('getObject', {
+            Bucket: 'aws-entalk',
+            Key: latestFile.Key,
+            Expires: 60 * 5
+        });
+        console.log('Latest Spiderman audio URL:', url);
+        res.send({ url });
+    } catch (error) {
+        console.error('Error fetching the latest Spiderman audio:', error);
+        res.status(500).send({ message: 'Error fetching the latest Spiderman audio' });
+    }
+});
+
 
 
 app.listen(PORT, () => {
