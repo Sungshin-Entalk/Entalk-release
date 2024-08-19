@@ -41,7 +41,7 @@ function setupButtons() {
     buttonContainer.style.marginTop = '30px';
 
     // 버튼 배열로 생성
-    const buttons = ['Tell me how to be a good detective.', 'What is the most memorable incident?', 'Why did you want to be a detective?', 'I am your true fan! I will always cheer for you!'];
+    const buttons = ['How do you manage balancing being a superhero and a regular person?', 'What was the toughest battle you have ever faced?', 'What inspired you to become Spider-Man?', 'I am your biggest fan! I will always support you no matter what!'];
     buttons.forEach((buttonText, index) => {
         const button = document.createElement('button');
         button.textContent = buttonText;
@@ -91,9 +91,9 @@ function closeModal() {
 // 예시 데이터
 const sherlockData = {
     name: "Sherlock Holmes",
-    imagePath: "../images/sherlockface.png",
-    introduction: "Sherlock Holmes boasts unparalleled observational and deductive abilities, often appearing arrogant due to his confidence in his intellect. Prioritizing cases over social interactions, his significant relationship is with Watson, favoring unique solutions over traditional methods.",
-    actor: "Benedict Cumberbatch"
+    imagePath: "../images/spidermanface.png",
+    introduction: "Spider-Man balances his responsibilities as a superhero with the challenges of being a regular teenager. Equipped with spider-like abilities and a sharp wit, he focuses on protecting the people of his city while learning to handle the burden of his powers and personal life.",
+    actor: "Tom Holland"
 };
 
 // 문서가 로드되면 초기 내용 설정 함수 호출 및 이벤트 리스너 추가
