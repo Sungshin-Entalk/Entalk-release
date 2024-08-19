@@ -16,7 +16,7 @@ bucket_name = os.getenv('bucket_name')
 current_dir = os.path.dirname(__file__)
 
 # AWS 자격 증명 및 S3 버킷 설정
-file_path = os.path.abspath(os.path.join(current_dir, '..', '..', 'Data', 'output.wav'))
+file_path = os.path.abspath(os.path.join(current_dir, '..', '..','..','Data', 'output.wav'))
 s3_key = 'output.wav'  # S3에서 파일을 저장할 경로
 
 # 현재 시각을 기반으로 동적 파일 이름 생성
