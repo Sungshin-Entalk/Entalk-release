@@ -79,7 +79,7 @@ def main():
         print("No messages retrieved.")
     
      # 가상 환경의 Python 경로 설정, python 실행코드
-    venv_python_path = os.path.abspath(os.path.join(current_dir, '..', '..', 'venv', 'bin', 'python3'))
+    venv_python_path = "/opt/conda/bin/python3"
     audio_script_path = os.path.abspath(os.path.join(current_dir, '..', 'Audio', 'spiderman', 'Audio_spiderman.py'))
     audio_s3_path = os.path.abspath(os.path.join(current_dir, '..', 'Audio', 'spiderman', 'Audio_s3_spiderman.py'))
     subprocess.run([venv_python_path, audio_script_path], check=True, capture_output=True, text=True)
