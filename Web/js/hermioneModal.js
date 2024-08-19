@@ -41,7 +41,7 @@ function setupButtons() {
     buttonContainer.style.marginTop = '30px';
 
     // 버튼 배열로 생성
-    const buttons = ['Tell me how to be a good detective.', 'What is the most memorable incident?', 'Why did you want to be a detective?', 'I am your true fan! I will always cheer for you!'];
+    const buttons = ['What advice would you give to someone who wants to be as smart as you?', 'What is the most challenging spell you’ve ever mastered?', 'Why did you choose to stand by Harry and Ron through everything?', 'I am your true fan! I’ll always admire your intelligence and bravery!'];
     buttons.forEach((buttonText, index) => {
         const button = document.createElement('button');
         button.textContent = buttonText;
@@ -91,9 +91,9 @@ function closeModal() {
 // 예시 데이터
 const sherlockData = {
     name: "Sherlock Holmes",
-    imagePath: "../images/sherlockface.png",
-    introduction: "Sherlock Holmes boasts unparalleled observational and deductive abilities, often appearing arrogant due to his confidence in his intellect. Prioritizing cases over social interactions, his significant relationship is with Watson, favoring unique solutions over traditional methods.",
-    actor: "Benedict Cumberbatch"
+    imagePath: "../images/hermioneface.png",
+    introduction: "Hermione Granger is known for her intelligence, diligence, and resourcefulness. Often the voice of reason within her group, she uses her vast knowledge of spells and magical theory to solve problems. Her strong sense of justice and loyalty to her friends drive many of her decisions.",
+    actor: "Emma Watson"
 };
 
 // 문서가 로드되면 초기 내용 설정 함수 호출 및 이벤트 리스너 추가
