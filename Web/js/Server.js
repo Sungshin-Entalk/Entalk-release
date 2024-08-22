@@ -30,7 +30,7 @@ const s3 = new AWS.S3({
 });
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', '..', 'web')));
+app.use(express.static(path.join(__dirname, '..', '..', 'Web')));
 
 const pythonScriptPath = path.join(__dirname, "..", "..", "AI", "Text", "test.py");
 
@@ -171,7 +171,7 @@ app.get('/latest-audio-spiderman', async (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log('Serving static from:', path.join(__dirname, 'web'));
+    console.log('Serving static from:', path.join(__dirname, 'Web'));
     console.log('__dirname:', __dirname);
     console.log(`Server running at http://localhost:${PORT}`);
 });
