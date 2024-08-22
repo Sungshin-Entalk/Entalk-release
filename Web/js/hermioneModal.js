@@ -6,12 +6,12 @@ function setupInitialContent() {
     const initialImage = document.getElementById('initialImage');
     if (!initialImage) { // 이미지가 없으면 새로 생성하여 추가
         const newInitialImage = document.createElement('img');
-        newInitialImage.src = '../images/img_conv.png';
+        newInitialImage.src = '../images/text_title_hermione.png';
         newInitialImage.id = 'initialImage';
         newInitialImage.alt = 'Preparing new chat';
-        newInitialImage.style.width = '40%';
+        newInitialImage.style.width = '55%';
         newInitialImage.style.height = 'auto';
-        newInitialImage.style.marginTop = '10%';
+        newInitialImage.style.marginTop = '5%';
         messageArea.appendChild(newInitialImage);
     }
 
@@ -38,15 +38,15 @@ function setupButtons() {
     buttonContainer.style.display = 'flex';
     buttonContainer.style.justifyContent = 'space-around';
     buttonContainer.style.alignItems = 'center';
-    buttonContainer.style.marginTop = '30px';
+    buttonContainer.style.marginTop = '0px';
 
     // 버튼 배열로 생성
-    const buttons = ['What advice would you give to someone who wants to be as smart as you?', 'What is the most challenging spell you’ve ever mastered?', 'Why did you choose to stand by Harry and Ron through everything?', 'I am your true fan! I’ll always admire your intelligence and bravery!'];
+    const buttons = ['What advice would you give to someone who wants to be as smart as you?', 'What is the most challenging spell you’ve ever mastered?', 'Why did you choose to stand by Harry and Ron through everything?', 'I will always admire your intelligence and bravery!'];
     buttons.forEach((buttonText, index) => {
         const button = document.createElement('button');
         button.textContent = buttonText;
         const fontSize = 16; // 폰트 사이즈 설정
-        button.style.padding = '30px 10px 30px 10px'; // padding: top right bottom left
+        button.style.padding = '20px 20px 20px 20px'; // padding: top right bottom left
         button.style.fontSize = `${fontSize}px`;
         button.style.backgroundColor = '#dcdcdc';
         button.style.color = '#333';
