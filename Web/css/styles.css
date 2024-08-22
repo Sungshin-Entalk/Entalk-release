@@ -439,19 +439,13 @@ body, html {
     width: 100%; /* 화면 너비를 꽉 채우기 위해 너비를 100%로 설정 */
 }
 
-#page4 {
-    background-color: #f3f3f3;
-    min-height: 100vh; /* 화면 세로를 꽉 채우기 위해 최소 높이를 화면 높이로 설정 */
-    width: 100%; /* 화면 너비를 꽉 채우기 위해 너비를 100%로 설정 */
-}
-
 #page5 {
-    background-color: #0C2359;
-    min-height: 20vh;
+    background-color: #15110D;
+    min-height: 32vh;
     display: flex; /* 요소를 가로로 배열 */
     justify-content: flex-start; /* 가로 정렬 방향을 시작점으로 설정 */
     align-items: flex-start; /* 세로 정렬 방향을 시작점으로 설정 */
-    padding: 20px; /* 텍스트와 페이지 가장자리 간격을 늘림 */
+    padding: 0px; /* 텍스트와 페이지 가장자리 간격을 늘림 */
     text-align: left; /* 텍스트를 왼쪽 정렬 */
 }
 .page h1 {
