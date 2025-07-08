@@ -23,12 +23,12 @@ pip install -r requirements.txt
 
 # Node.js dependencies
 npm install
-```bash
+```
 
 2. start the application:
 ```bash
 npm start
-```bash
+```
 
 
 
