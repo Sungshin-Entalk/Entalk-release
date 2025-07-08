@@ -12,7 +12,8 @@ Description
 - 사용자는 개인의 취향에 맞는 캐릭터를 선택하여 대화함으로써 만족감을 얻으며 캐릭터와 가까워지고 싶은 니즈를 충족할 수 있습니다.
 - 엔톡은 웹 플랫폼을 통해 접근 가능합니다.
 
-###🚀 Getting Started
+Getting Started
+---
 
 1. Install dependencies (for Python and Node.js):
 
@@ -22,6 +23,15 @@ pip install -r requirements.txt
 
 # Node.js dependencies
 npm install
+```bash
+
+2. start the application:
+```bash
+npm start
+```bash
+
+
+
 
 
 
